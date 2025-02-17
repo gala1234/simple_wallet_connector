@@ -1,11 +1,9 @@
-import { useAccount, useEnsName, useConnect } from "wagmi";
-import { injected } from "wagmi/connectors";
+import { useAccount, useEnsName } from "wagmi";
 
-function App() {
+export function Profile() {
   console.log("Profile component rendering");
 
   const { address, isConnected } = useAccount();
-  const { connect } = useConnect();
   console.log("Wagmi hook values:", { isConnected, address });
 
   const { data, error, status } = useEnsName({
@@ -19,7 +17,7 @@ function App() {
     return (
       <button
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => connect({ connector: injected() })}
+        // onClick={() => connect()}
       >
         Connect Wallet
       </button>
@@ -41,5 +39,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
